@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import logo from '../../assets/img.png';
 import { Button, Table } from 'antd';
 import { useReactToPrint } from 'react-to-print';

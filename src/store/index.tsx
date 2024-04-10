@@ -6,7 +6,7 @@ export interface InterfaceStoreContext {
 }
 export const initStoreContext: InterfaceStoreContext = {
     listProduct: null,
-    dispatch(action) { }
+    dispatch() { }
 }
 const StoreContext = createContext<InterfaceStoreContext>(initStoreContext);
 
