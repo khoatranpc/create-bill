@@ -1,9 +1,10 @@
 import { Button, Checkbox, Form, Input, Table } from 'antd';
 import { useContext, useState } from 'react';
-import StoreContext from '../../store';
-import './styles.scss';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
+import StoreContext from '../../store';
+import './styles.scss';
 
 interface Props {
     data: any;
@@ -16,6 +17,7 @@ const createBill = async (dataBody: any) => {
 const ModalDetailBill = (props: Props) => {
     const store = useContext(StoreContext);
     const [loadingCreate, setLoadingCreate] = useState(false);
+    const nav = useNavigate();
     const data = store.listProduct;
     const getColumnsBill = [
         {
@@ -59,7 +61,7 @@ const ModalDetailBill = (props: Props) => {
             const createdBill = await createBill(getData);
             if (createdBill) {
                 props.setModal(false);
-                window.open('https://create-bill-pziw.onrender.com/bill', '_blank');
+                nav('/bill', { replace: true });
                 localStorage.setItem('createdBill', JSON.stringify(createdBill));
                 setLoadingCreate(false);
             }
