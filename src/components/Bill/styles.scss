@@ -1,0 +1,101 @@
+.pagePrintBill {
+    display: flex;
+    max-width: 60vw;
+    margin: auto;
+
+    .content {
+        padding: 50px;
+        max-width: 100%;
+    }
+
+    .selectBill {
+        padding: 15px;
+        padding-top: 0;
+        border-right: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        span {
+            cursor: pointer;
+
+            &.active,
+            &:hover {
+                color: #9f7fff;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .table {
+
+        * {
+            font-weight: bold !important;
+        }
+
+        th.th-text-center {
+            text-align: center;
+        }
+
+        td.cell-text-right {
+            text-align: right;
+        }
+
+        td.cell-text-center {
+            text-align: center;
+        }
+    }
+
+    .textPay,
+    .forCompany {
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    .forCompany {
+        text-align: right;
+        font-style: normal;
+    }
+
+    .viewBill {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        .imgLogo {
+            max-width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .date {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .row {
+            display: flex;
+            margin-bottom: 18px;
+
+            .left {
+                flex: 1;
+            }
+
+            .right {
+                text-align: right;
+                flex: 0.7;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.printPageBill {
+    max-width: 100%;
+
+    .content {
+        max-width: 100%;
+    }
+}

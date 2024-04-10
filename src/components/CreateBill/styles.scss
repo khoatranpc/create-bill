@@ -1,0 +1,19 @@
+.handle {
+    margin-top: 15px;
+}
+
+.handle {
+    display: flex;
+    justify-content: space-around;
+}
+
+.selectUser {
+    position: relative;
+
+    .required {
+        color: red;
+        position: absolute;
+        right: -10px;
+        top: 0;
+    }
+}

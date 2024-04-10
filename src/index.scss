@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media print {
+  * {
+    font-size: 6px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .content {
+    padding: 0 15px;
+    max-width: 100%;
+
+    h1 {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .date {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      margin-bottom: 18px;
+
+      .left {
+        flex: 1;
+      }
+
+      .right {
+        text-align: right;
+        flex: 0.7;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .table {
+
+    * {
+      font-weight: bold !important;
+    }
+
+    th.th-text-center {
+      text-align: center;
+    }
+
+    td.cell-text-right {
+      text-align: right;
+    }
+
+    td.cell-text-center {
+      text-align: center;
+    }
+  }
+
+  .textPay,
+  .forCompany {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .forCompany {
+    text-align: right;
+    font-style: normal;
+  }
+}

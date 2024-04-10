@@ -1,0 +1,14 @@
+.bill {
+    display: flex;
+    gap: 15px;
+
+    .moreOptional {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left,
+    .right {
+        flex: 1;
+    }
+}
