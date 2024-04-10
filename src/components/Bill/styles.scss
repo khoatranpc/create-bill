@@ -9,8 +9,7 @@
     }
 
     .selectBill {
-        padding: 15px;
-        padding-top: 0;
+        padding: 50px;
         border-right: 1px solid black;
         display: flex;
         flex-direction: column;
@@ -18,6 +17,7 @@
 
         span {
             cursor: pointer;
+            font-size: 18px !important;
 
             &.active,
             &:hover {
@@ -25,6 +25,11 @@
                 text-decoration: underline;
             }
         }
+    }
+
+    .informationBill {
+        padding: 0 25px;
+        margin-top: 18px;
     }
 
     .table {
@@ -68,6 +73,9 @@
 
         h1 {
             text-align: center;
+            font-weight: 800;
+            font-size: 50px !important;
+            text-transform: uppercase;
         }
 
         .date {

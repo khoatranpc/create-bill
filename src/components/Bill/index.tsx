@@ -257,7 +257,7 @@ const Bill = () => {
                     <div className="img">
                         <img src={logo} alt="" className="imgLogo" />
                     </div>
-                    <h1>COMMERCIAL INVOICE</h1>
+                    <h1>{typeBill === BillView.INVOICE ? 'COMMERCIAL INVOICE' : 'Packing List'}</h1>
                     <div className="date">
                         Date: 08/10/2023
                         <br />
@@ -267,7 +267,7 @@ const Bill = () => {
                         {getDataBill && Object.keys(initData).map((item, idx) => {
                             return <div key={idx} className="row">
                                 <div className='left'>{initData[item]}:</div>
-                                <div className='right'>{item === "khachhang" ? getDataBill[item].ten : getDataBill[item]}</div>
+                                <div className='right'>{item === "khachhang" ? `${getDataBill[item].ten} ${getDataBill[item].diachi} ${getDataBill[item].zipcode} ${getDataBill[item].quocgia} ${getDataBill[item].sdt}` : getDataBill[item]}</div>
                             </div>
                         })}
                     </div>
