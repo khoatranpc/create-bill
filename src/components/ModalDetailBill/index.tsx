@@ -59,6 +59,7 @@ const ModalDetailBill = (props: Props) => {
             const createdBill = await createBill(getData);
             if (createdBill) {
                 props.setModal(false);
+                window.open('https://create-bill-pziw.onrender.com/bill', '_blank');
                 localStorage.setItem('createdBill', JSON.stringify(createdBill));
                 setLoadingCreate(false);
             }
