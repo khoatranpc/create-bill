@@ -254,7 +254,9 @@ const Bill = () => {
             </div>
             <div className="viewBill" ref={billRef} style={{ maxWidth: '100%' }}>
                 <div className="content">
-                    <img src={logo} alt="" className="imgLogo" />
+                    <div className="img">
+                        <img src={logo} alt="" className="imgLogo" />
+                    </div>
                     <h1>COMMERCIAL INVOICE</h1>
                     <div className="date">
                         Date: 08/10/2023

@@ -5,17 +5,18 @@
 }
 
 @media print {
-  * {
-    font-size: 6px;
-  }
+  div.img {
+    display: flex;
+    justify-content: center;
 
-  img {
-    max-width: 100%;
+    img {
+      max-width: 100%;
+    }
   }
 
   .content {
     padding: 0 15px;
-    max-width: 100%;
+    max-width: 70%;
 
     h1 {
       text-align: center;
