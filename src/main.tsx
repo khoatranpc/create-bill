@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<Layout />} >
-                <Route path='' element={<App />} />
+                {['', 'home'].map((item, idx) => <Route key={idx} path={item} element={<App />} />)}
                 <Route path='/bill' element={<Bill />} />
             </Route>
         </Routes>
