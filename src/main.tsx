@@ -4,16 +4,16 @@ import Layout from './layout.tsx';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Bill from './components/Bill/index.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <HashRouter>
+    <BrowserRouter>
         <Routes>
             <Route path='/' element={<Layout />} >
                 <Route path='' element={<App />} />
                 <Route path='/bill' element={<Bill />} />
             </Route>
         </Routes>
-    </HashRouter>
+    </BrowserRouter>
 )
