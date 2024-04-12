@@ -7,11 +7,13 @@ import StoreContext from '../../store';
 import { STORE_LIST_PRODUCT } from '../../store/type';
 import ModalDetailBill from '../ModalDetailBill';
 import './styles.scss';
+import { SearchOutlined } from '@ant-design/icons';
 
 const CreateBill = () => {
     const store = useContext(StoreContext);
     const data = store.listProduct;
     const [modal, setModal] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
     const notify = (message: string, options: ToastOptions<unknown> | undefined) => toast(message, options);
     const [infoBill, setInfoBill] = useState<{
         selectedProducts: { id_sanpham: string, quantity: number, [k: string]: any }[],
@@ -47,6 +49,11 @@ const CreateBill = () => {
         }
     }
     const columns: ColumnsType<any> = [
+        {
+            key: 'ID',
+            title: 'ID',
+            dataIndex: 'id_sanpham'
+        },
         {
             key: 'productName',
             title: 'Tên sản phẩm',
@@ -107,17 +114,23 @@ const CreateBill = () => {
 
     const filterOption = (input: string, option?: { label: string; value: string }) =>
         (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
-
     useEffect(() => {
         queryDataProduct();
     }, []);
     return (
         <div className="createBill">
+            <div className="searchBar">
+                <Input type='text' prefix={<SearchOutlined />} className='searchInput' onChange={((e) => {
+                    setSearchValue(e.target.value);
+                })} />
+            </div>
             <Table
                 rowSelection={rowSelection}
                 loading={!data}
                 columns={columns}
-                dataSource={rowData}
+                dataSource={!searchValue ? rowData : rowData.filter((data) => {
+                    return String(data.ten).toLowerCase().includes(searchValue.toLowerCase()) || String(data.id_sanpham).toLowerCase().includes(searchValue.toLowerCase());
+                })}
             />
             <div className='handle'>
                 <label className='selectUser'>

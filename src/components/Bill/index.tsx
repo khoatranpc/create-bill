@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
-import logo from '../../assets/img.png';
 import { Button, Table } from 'antd';
 import { useReactToPrint } from 'react-to-print';
 import { ColumnsType } from 'antd/es/table';
+import { numberToWords } from '../../utils';
+import logo from '../../assets/img.png';
 import './styles.scss';
 
 enum BillView {
@@ -48,7 +49,7 @@ const Bill = () => {
             colSpan: 1
         },
         {
-            ten_sanpham: 'Say in Total: US  Dollars  Thirty thousand Four hundred forty one and Seventy nine cents only.',
+            ten_sanpham: `Say in Total: US  Dollars  ${numberToWords(String(Number(getDataBill?.tonggia).toFixed(2)))}`,
             colSpanten_sanpham: 4,
             colSpantrongluongnet_kg_field: 0,
             colSpangiasanpham_kg: 0,
@@ -78,6 +79,11 @@ const Bill = () => {
         });
     }
     const columns: ColumnsType<any> = [
+        {
+            key: 'ID',
+            title: 'ID',
+            dataIndex: 'id_sanpham'
+        },
         {
             key: 'NO',
             title: 'No',

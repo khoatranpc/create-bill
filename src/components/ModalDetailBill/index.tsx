@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Table } from 'antd';
+import { Button, Checkbox, Form, Input, Select, Table } from 'antd';
 import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -19,6 +19,22 @@ const ModalDetailBill = (props: Props) => {
     const [loadingCreate, setLoadingCreate] = useState(false);
     const nav = useNavigate();
     const data = store.listProduct;
+    const shippingLine = (data.shippingline as Array<any>)?.map((item) => ({
+        value: item,
+        label: item
+    }));
+    const shippedper = (data.shippedper as Array<any>)?.map((item) => ({
+        value: item,
+        label: item
+    }));
+    const portofloading = (data.portofloading as Array<any>)?.map((item) => ({
+        value: item,
+        label: item
+    }));
+    const placeofdelivery = (data.portofloading as Array<any>)?.map((item) => ({
+        value: item,
+        label: item
+    }));
     const getColumnsBill = [
         {
             title: 'Tên sản phẩm',
@@ -36,7 +52,6 @@ const ModalDetailBill = (props: Props) => {
             contract: '',
             shippingLine: '',
             shippedPer: '',
-            consignee: '',
             portOfLoading: '',
             placeOfDelivery: '',
             sailingOn: '',
@@ -67,6 +82,13 @@ const ModalDetailBill = (props: Props) => {
             }
         }
     });
+    const onChange = (value: string, name: 'shippingLine' | 'shippedPer' | 'portOfLoading' | 'placeOfDelivery') => {
+        setFieldValue(name, value);
+    };
+    const filterOption = () => {
+        return (input: string, option?: { label: string; value: string }) =>
+            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+    };
     return (
         <div className="detailBill">
             <Form
@@ -128,23 +150,47 @@ const ModalDetailBill = (props: Props) => {
                     </Form.Item>
                     <Form.Item>
                         <label>Shipping Line</label>
-                        <Input size="small" name="shippingLine" onChange={handleChange} onBlur={handleBlur} value={values.shippingLine} />
+                        <Select
+                            showSearch
+                            onChange={(value) => {
+                                onChange(value, 'shippingLine')
+                            }}
+                            filterOption={filterOption()}
+                            options={shippingLine}
+                        />
                     </Form.Item>
                     <Form.Item>
                         <label>Shipped Per</label>
-                        <Input size="small" name="shippedPer" onChange={handleChange} onBlur={handleBlur} value={values.shippedPer} />
-                    </Form.Item>
-                    <Form.Item>
-                        <label>Consignee</label>
-                        <Input size="small" name="consignee" onChange={handleChange} onBlur={handleBlur} value={values.consignee} />
+                        <Select
+                            showSearch
+                            onChange={(value) => {
+                                onChange(value, 'shippedPer')
+                            }}
+                            filterOption={filterOption()}
+                            options={shippedper}
+                        />
                     </Form.Item>
                     <Form.Item>
                         <label>Port of loading</label>
-                        <Input size="small" name="portOfLoading" onChange={handleChange} onBlur={handleBlur} value={values.portOfLoading} />
+                        <Select
+                            showSearch
+                            onChange={(value) => {
+                                onChange(value, 'portOfLoading')
+                            }}
+                            filterOption={filterOption()}
+                            options={portofloading}
+                        />
                     </Form.Item>
                     <Form.Item>
                         <label>Place of Delivery</label>
-                        <Input size="small" name="placeOfDelivery" onChange={handleChange} onBlur={handleBlur} value={values.placeOfDelivery} />
+                        <Select
+                            showSearch
+                            onChange={(value) => {
+                                onChange(value, 'placeOfDelivery')
+                            }}
+                            filterOption={filterOption()}
+                            options={placeofdelivery}
+                        />
                     </Form.Item>
                     <Form.Item>
                         <label>Sailing on</label>
