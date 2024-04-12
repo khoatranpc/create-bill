@@ -31,7 +31,7 @@ const ModalDetailBill = (props: Props) => {
         value: item,
         label: item
     }));
-    const placeofdelivery = (data.portofloading as Array<any>)?.map((item) => ({
+    const placeofdelivery = (data.placeofdelivery as Array<any>)?.map((item) => ({
         value: item,
         label: item
     }));
