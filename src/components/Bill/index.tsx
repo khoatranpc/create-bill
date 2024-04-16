@@ -49,7 +49,7 @@ const Bill = () => {
             colSpan: 1
         },
         {
-            ten_sanpham: `Say in Total: US  Dollars  ${numberToWords(String(Number(getDataBill?.tonggia).toFixed(2)))}`,
+            ten_sanpham: <span>Say in Total: US Dollars <span style={{ textTransform: 'capitalize' }}>{numberToWords(String(Number(getDataBill?.tonggia).toFixed(2)))}</span></span>,
             colSpanten_sanpham: 4,
             colSpantrongluongnet_kg_field: 0,
             colSpangiasanpham_kg: 0,
@@ -273,7 +273,7 @@ const Bill = () => {
                         {getDataBill && Object.keys(initData).map((item, idx) => {
                             return <div key={idx} className="row">
                                 <div className='left'>{initData[item]}:</div>
-                                <div className='right'>{item === "khachhang" ? `${getDataBill[item].ten} ${getDataBill[item].diachi} ${getDataBill[item].zipcode} ${getDataBill[item].quocgia} ${getDataBill[item].sdt}` : getDataBill[item]}</div>
+                                <div className='right'>{item === "khachhang" ? `${getDataBill[item].ten} ${getDataBill[item].diachi ?? ''} ${getDataBill[item].zipcode ?? ''} ${getDataBill[item].quocgia ?? ''}` : getDataBill[item] ?? ''}</div>
                             </div>
                         })}
                     </div>

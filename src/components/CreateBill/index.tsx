@@ -1,18 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ToastContainer, ToastOptions, toast } from 'react-toastify';
 import { Button, Input, Modal, Select, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import { TableRowSelection } from 'antd/es/table/interface';
+import { SearchOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import StoreContext from '../../store';
 import { STORE_LIST_PRODUCT } from '../../store/type';
 import ModalDetailBill from '../ModalDetailBill';
 import './styles.scss';
-import { SearchOutlined } from '@ant-design/icons';
 
 const CreateBill = () => {
     const store = useContext(StoreContext);
     const data = store.listProduct;
     const [modal, setModal] = useState(false);
+    const isSearching = useRef(false);
     const [searchValue, setSearchValue] = useState('');
     const notify = (message: string, options: ToastOptions<unknown> | undefined) => toast(message, options);
     const [infoBill, setInfoBill] = useState<{
@@ -22,24 +24,25 @@ const CreateBill = () => {
         selectedProducts: [],
         customer: ''
     });
-    const rowSelection = {
-        selectedProductKeys: infoBill.selectedProducts,
-        onChange: (newSelectedProductKeys: Array<any>) => {
-            setInfoBill({
-                ...infoBill,
-                selectedProducts: newSelectedProductKeys.map((item) => {
-                    const findE = (data.sanpham as Array<any>)?.find((prd) => prd.id_sanpham === item);
-                    const findExisted = infoBill.selectedProducts.find((slc => slc.id_sanpham === item));
-                    return {
-                        id_sanpham: item,
-                        quantity: findExisted?.quantity ?? 0,
-                        price: findE?.gia_final,
-                        weight: findE?.trong_luong_final,
-                        ten: findE?.ten,
-                    }
-                })
-            });
-        },
+    const rowSelection: TableRowSelection<any> = {
+        selectedRowKeys: infoBill.selectedProducts.map((item) => {
+            return item.id_sanpham
+        }),
+        onSelect(record: any, selected: boolean) {
+            if (!selected) {
+                const idx = infoBill.selectedProducts.findIndex(item => item.id_sanpham === record.id_sanpham);
+                infoBill.selectedProducts.splice(idx, 1);
+            } else {
+                infoBill.selectedProducts.push({
+                    id_sanpham: record?.id_sanpham,
+                    quantity: 0,
+                    price: record?.gia_final,
+                    weight: record?.trong_luong_final,
+                    ten: record?.ten,
+                });
+            }
+            setInfoBill({ ...infoBill });
+        }
     };
     const handleChangeQuantityProduct = (id_sanpham: string, quantity: number) => {
         const findRecordProduct = infoBill.selectedProducts.find(item => item.id_sanpham === id_sanpham);
@@ -122,6 +125,7 @@ const CreateBill = () => {
             <div className="searchBar">
                 <Input type='text' prefix={<SearchOutlined />} className='searchInput' onChange={((e) => {
                     setSearchValue(e.target.value);
+                    isSearching.current = !!e.target.value
                 })} />
             </div>
             <Table
@@ -129,7 +133,7 @@ const CreateBill = () => {
                 loading={!data}
                 columns={columns}
                 dataSource={!searchValue ? rowData : rowData.filter((data) => {
-                    return String(data.ten).toLowerCase().includes(searchValue.toLowerCase()) || String(data.id_sanpham).toLowerCase().includes(searchValue.toLowerCase());
+                    return String(data.ten).toLowerCase().trim().includes(searchValue.toLowerCase().trim()) || String(data.id_sanpham).toLowerCase().trim().includes(searchValue.toLowerCase().trim());
                 })}
             />
             <div className='handle'>
