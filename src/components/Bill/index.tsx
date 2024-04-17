@@ -107,7 +107,9 @@ const Bill = () => {
             dataIndex: 'trongluongnet_kg_field',
             className: 'th-text-center',
             render(value: any) {
-                return value ? Number(value).toFixed(2) : 0;
+                return value ? Number(value).toLocaleString(undefined, {
+                    minimumIntegerDigits: 2
+                }) : 0;
             },
             onCell(data: any) {
                 return {
@@ -122,7 +124,9 @@ const Bill = () => {
             dataIndex: 'giasanpham_kg',
             className: 'th-text-center',
             render(value: any) {
-                return value ? Number(value).toFixed(2) : 0;
+                return value ? Number(value).toLocaleString(undefined, {
+                    minimumIntegerDigits: 2
+                }) : 0;
             },
             onCell(data: any) {
                 return {
@@ -137,7 +141,9 @@ const Bill = () => {
             dataIndex: 'tonggiasanpham',
             className: 'th-text-center',
             render(value: any) {
-                return value ? Number(value).toFixed(2) : 0;
+                return value ? Number(value).toLocaleString(undefined, {
+                    minimumIntegerDigits: 2
+                }) : 0;
             },
             onCell(data: any) {
                 return {
@@ -152,7 +158,7 @@ const Bill = () => {
                 className: 'th-text-center',
                 dataIndex: 'soluongthung',
                 render(value: any) {
-                    return value ?? 0
+                    return value ? Number(value).toLocaleString() : 0
                 },
                 onCell() {
                     return {
@@ -166,7 +172,7 @@ const Bill = () => {
                 className: 'th-text-center',
                 dataIndex: 'soluongchai',
                 render(value: any) {
-                    return value ?? 0
+                    return value ? Number(value).toLocaleString() : 0
                 },
                 onCell() {
                     return {
@@ -185,7 +191,9 @@ const Bill = () => {
                         className: 'th-text-center',
                         dataIndex: 'trongluongnet_thung_kg_field',
                         render(value: any) {
-                            return Number(value) ? Number(value).toFixed(2) ?? 0 : ''
+                            return value ? Number(value).toLocaleString(undefined, {
+                                minimumFractionDigits: 2
+                            }) ?? 0 : ''
                         },
                         onCell() {
                             return {
@@ -199,7 +207,9 @@ const Bill = () => {
                         className: 'th-text-center',
                         dataIndex: 'trongluonggross_thung_kg_field',
                         render(value: any) {
-                            return Number(value) ? Number(value).toFixed(2) ?? 0 : ''
+                            return value ? Number(value).toLocaleString(undefined, {
+                                minimumFractionDigits: 2
+                            }) ?? 0 : ''
                         },
                         onCell() {
                             return {
@@ -219,7 +229,9 @@ const Bill = () => {
                         className: 'th-text-center',
                         dataIndex: 'trongluongnet_kg_field',
                         render(value: any) {
-                            return Number(value) ? Number(value).toFixed(2) ?? 0 : ''
+                            return value ? Number(value).toLocaleString(undefined, {
+                                minimumFractionDigits: 2
+                            }) ?? 0 : ''
                         },
                         onCell() {
                             return {
@@ -233,7 +245,9 @@ const Bill = () => {
                         className: 'th-text-center',
                         dataIndex: 'trongluonggross_kg_field',
                         render(value: any) {
-                            return Number(value) ? Number(value).toFixed(2) ?? 0 : ''
+                            return value ? Number(value).toLocaleString(undefined, {
+                                minimumFractionDigits: 2
+                            }) ?? 0 : ''
                         },
                         onCell() {
                             return {

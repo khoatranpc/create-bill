@@ -1,5 +1,6 @@
 import { Button, Checkbox, Form, Input, Select, Table } from 'antd';
 import { useContext, useState } from 'react';
+import { ColumnsType } from 'antd/es/table';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -35,7 +36,7 @@ const ModalDetailBill = (props: Props) => {
         value: item,
         label: item
     }));
-    const getColumnsBill = [
+    const getColumnsBill: ColumnsType<any> = [
         {
             title: 'Tên sản phẩm',
             dataIndex: 'ten',
@@ -44,7 +45,10 @@ const ModalDetailBill = (props: Props) => {
         {
             title: 'Số lượng',
             dataIndex: 'quantity',
-            key: 'quantity'
+            key: 'quantity',
+            render(value) {
+                return Number(value)?.toLocaleString() ?? '';
+            }
         },
     ];
     const { values, handleChange, handleBlur, handleSubmit, setFieldValue } = useFormik({
@@ -151,6 +155,7 @@ const ModalDetailBill = (props: Props) => {
                     <Form.Item>
                         <label>Shipping Line</label>
                         <Select
+                            optionFilterProp="children"
                             showSearch
                             onChange={(value) => {
                                 onChange(value, 'shippingLine')
@@ -162,6 +167,7 @@ const ModalDetailBill = (props: Props) => {
                     <Form.Item>
                         <label>Shipped Per</label>
                         <Select
+                            optionFilterProp="children"
                             showSearch
                             onChange={(value) => {
                                 onChange(value, 'shippedPer')
@@ -173,6 +179,7 @@ const ModalDetailBill = (props: Props) => {
                     <Form.Item>
                         <label>Port of loading</label>
                         <Select
+                            optionFilterProp="children"
                             showSearch
                             onChange={(value) => {
                                 onChange(value, 'portOfLoading')
@@ -184,6 +191,7 @@ const ModalDetailBill = (props: Props) => {
                     <Form.Item>
                         <label>Place of Delivery</label>
                         <Select
+                            optionFilterProp="children"
                             showSearch
                             onChange={(value) => {
                                 onChange(value, 'placeOfDelivery')
@@ -198,7 +206,7 @@ const ModalDetailBill = (props: Props) => {
                     </Form.Item>
                     <Form.Item>
                         <label>Booking No</label>
-                        <Input type="number" size="small" name="bookingOn" onChange={handleChange} onBlur={handleBlur} value={values.bookingOn} />
+                        <Input size="small" name="bookingOn" onChange={handleChange} onBlur={handleBlur} value={values.bookingOn} />
                     </Form.Item>
                     <Form.Item>
                         <label>Bill of lading no</label>
