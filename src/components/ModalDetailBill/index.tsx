@@ -63,7 +63,8 @@ const ModalDetailBill = (props: Props) => {
             billOfLadingNo: '',
             containerSealNo: '',
             packaging: (data.packagking as Array<any>)?.map((item) => item.id_chiphi) ?? [],
-            chiphi: (data.chiphi as Array<any>)?.map((item) => item.id_chiphi) ?? []
+            chiphi: (data.chiphi as Array<any>)?.map((item) => item.id_chiphi) ?? [],
+            weightDifference: 0
         },
         async onSubmit(values) {
             const getData = {
@@ -211,6 +212,10 @@ const ModalDetailBill = (props: Props) => {
                     <Form.Item>
                         <label>Bill of lading no</label>
                         <Input size="small" name="billOfLadingNo" onChange={handleChange} onBlur={handleBlur} value={values.billOfLadingNo} />
+                    </Form.Item>
+                    <Form.Item>
+                        <label>Sai số trọng lượng</label>
+                        <Input type="number" size="small" name="weightDifference" onChange={handleChange} onBlur={handleBlur} value={values.weightDifference} />
                     </Form.Item>
                     <Form.Item>
                         <label>Container/Seal no</label>
