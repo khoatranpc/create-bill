@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Button, Table } from 'antd';
+import { Button, DatePicker, Table } from 'antd';
 import { useReactToPrint } from 'react-to-print';
 import { ColumnsType } from 'antd/es/table';
 import { numberToWords } from '../../utils';
@@ -279,9 +279,13 @@ const Bill = () => {
                     </div>
                     <h1>{typeBill === BillView.INVOICE ? 'COMMERCIAL INVOICE' : 'Packing List'}</h1>
                     <div className="date">
-                        Date: 08/10/2023
+                        Date: <DatePicker size="small" className="datePicker" suffixIcon={false} format={"DD/MM/YYYY"} style={{
+                            width: '150px'
+                        }} />
                         <br />
-                        No: 08/10/2023/TPC
+                        No: <input className="inputNo" style={{
+                            width: '150px'
+                        }} />
                     </div>
                     <div className="informationBill">
                         {getDataBill && Object.keys(initData).map((item, idx) => {
