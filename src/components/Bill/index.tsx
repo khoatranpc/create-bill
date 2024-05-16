@@ -80,11 +80,6 @@ const Bill = () => {
     }
     const columns: ColumnsType<any> = [
         {
-            key: 'ID',
-            title: 'ID',
-            dataIndex: 'id_sanpham'
-        },
-        {
             key: 'NO',
             title: 'No',
             dataIndex: 'no',
