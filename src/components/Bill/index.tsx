@@ -102,9 +102,9 @@ const Bill = () => {
             dataIndex: 'trongluongnet_kg_field',
             className: 'th-text-center',
             render(value: any) {
-                return value ? Number(value).toLocaleString(undefined, {
-                    minimumIntegerDigits: 2
-                }) : 0;
+                return value ? Number(value) .toLocaleString(undefined, {
+                    maximumFractionDigits: 2
+                }): 0;
             },
             onCell(data: any) {
                 return {
@@ -120,7 +120,7 @@ const Bill = () => {
             className: 'th-text-center',
             render(value: any) {
                 return value ? Number(value).toLocaleString(undefined, {
-                    minimumIntegerDigits: 2
+                    maximumFractionDigits: 2
                 }) : 0;
             },
             onCell(data: any) {
@@ -137,7 +137,7 @@ const Bill = () => {
             className: 'th-text-center',
             render(value: any) {
                 return value ? Number(value).toLocaleString(undefined, {
-                    minimumIntegerDigits: 2
+                    maximumFractionDigits: 2
                 }) : 0;
             },
             onCell(data: any) {
